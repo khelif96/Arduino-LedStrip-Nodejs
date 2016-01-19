@@ -1,0 +1,46 @@
+<head>
+  <title> Colors</title>
+  <script src="socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+
+  <!--  JQuery  -->
+  <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+
+  <!--  BootStrap Stuff -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <!-- CSS Stuff -->
+  <link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+  <div class="container-fluid">
+  <h2 class="text-primary text-center"> Led Strip</h2>
+  <button onclick="send('color:red')" class="btn btn-lg btn-block btn-danger col-xs-12">Red</button>
+  <button onclick="send('color:green')" class="btn btn-lg btn-block btn-success col-xs-12">Green</button>
+  <button onclick="send('color:yellow')" class="btn btn-lg btn-block btn-warning col-xs-12">Yellow</button>
+  <button onclick="send('color:blue')" class="btn btn-lg btn-block btn-primary col-xs-12">Blue</button>
+  <button onclick="send('color:rainbow')" class="btn btn-lg btn-block  col-xs-12">Rainbow</button>
+  <button onclick="send('color:off')" class="btn btn-lg btn-block col-xs-12">OFF</button>
+  <div class="row text-center">
+
+    <div class="col-xs-6">
+      <div class="well">
+      <label><input type="radio" onclick="send('mode:solid')" id="solid" name="optradio">Solid</label>
+    </div>
+  </div>
+    <div class="col-xs-6">
+      <div class="well">
+      <label><input type="radio" onclick="send('mode:pulse')" id="pulse" name="optradio">Pulse</label>
+    </div>
+  </div>
+  </div>
+  <div class="row">
+    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+  </div>
+
+  </div>
+</div>
+</body>
