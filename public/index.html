@@ -17,7 +17,7 @@
 </head>
 <body>
   <div class="container-fluid">
-  <h2 class="text-primary text-center"> Led Strip</h2>
+  <h2 class="text-primary text-center" id="title"> Led Strip</h2>
   <button onclick="send('color:red')" class="btn btn-lg btn-block btn-danger col-xs-12">Red</button>
   <button onclick="send('color:green')" class="btn btn-lg btn-block btn-success col-xs-12">Green</button>
   <button onclick="send('color:yellow')" class="btn btn-lg btn-block btn-warning col-xs-12">Yellow</button>
@@ -27,18 +27,17 @@
   <div class="row">
   </div>
 
-  <div style="margin-top:15px;" class="row text-center">
+  <div style="margin-top:15px; margin-bottom:15px;" class="row text-center">
 
     <div class="col-xs-6">
-      <div class="well">
-      <label><input type="radio" onclick="send('mode:solid')" id="solid" name="optradio">Solid</label>
-    </div>
+      <button onclick="send('mode:pulse')" class="btn btn-lg col-xs-12">Pulse</button>
   </div>
     <div class="col-xs-6">
-      <div class="well">
-      <label><input type="radio" onclick="send('mode:pulse')" id="pulse" name="optradio">Pulse</label>
-    </div>
+      <button onclick="send('mode:solid')" class="btn btn-lg col-xs-12">Solid</button>
   </div>
+  </div>
+  <div class="row text-center">
+    <div  class="col-xs-12 text-primary"><h4 id="speed_value">100<h4></div>
   </div>
   <div class="row">
     <div class="col-xs-12 center-block">

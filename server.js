@@ -12,7 +12,11 @@ var serialPort = new SerialPort("/dev/ttyACM0",{
 
 // Desired Port
 var port = 3000;
-
+var speed = 100;
+var color = "";
+var mode = "solid";
+var temp;
+var initialPacket
 server.listen(port);
 app.use(express.static('public'));
 
@@ -25,8 +29,21 @@ serialPort.on("open", function(){
 io.sockets.on('connection', function(socket){
   console.log("Client Connected");
 
+  // socket.emit('initialPacket',{value:initialPacket});
+
   socket.on('input', function(data){
       console.log("input: " + data.value);
+      //
+      // temp = data.value.split(":");
+      //
+      // if(temp[0] == "color"){
+      //   color = temp[1];
+      // }else if(temp[0] == "speed"){
+      //   speed = temp[1];
+      // }else if(temp[0] == "mode"){
+      //   mode = temp[1];
+      // }
+
       serialPort.write(data.value);
 
 
