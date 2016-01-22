@@ -24,7 +24,10 @@
   <button onclick="send('color:blue')" class="btn btn-lg btn-block btn-primary col-xs-12">Blue</button>
   <button onclick="send('color:rainbow')" class="btn btn-lg btn-block  col-xs-12">Rainbow</button>
   <button onclick="send('color:off')" class="btn btn-lg btn-block col-xs-12">OFF</button>
-  <div class="row text-center">
+  <div class="row">
+  </div>
+
+  <div style="margin-top:15px;" class="row text-center">
 
     <div class="col-xs-6">
       <div class="well">
@@ -38,7 +41,11 @@
   </div>
   </div>
   <div class="row">
-    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+    <div class="col-xs-12 center-block">
+    <div class="well">
+    <input id="speedBar" type="range" min="0" max="200" step:"10" onchange="changeSpeed()"/>
+  </div>
+</div>
   </div>
 
   </div>
