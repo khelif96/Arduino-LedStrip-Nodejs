@@ -63,6 +63,9 @@ PROGMEM const unsigned long pattern_test_white[10][10]={
   {0x000000,0x000000,0x000000,0x000000,0x000000,0x000000,0x000000,0x000000,0x000000,0xffffff},
 };
 
+PROGMEM const unsigned long solid_white[][10]={
+  {0xFFFFFF,0xFFFFFF,0xFFFFFF,0xFFFFFF,0xFFFFFF,0xFFFFFF,0xFFFFFF,0xFFFFFF,0xFFFFFF,0xFFFFFF}
+};
 // BLUE is the second doublet
 PROGMEM const unsigned long pattern_test_blue[10][10]={
   {0x00f000,0x000000,0x000000,0x000000,0x000000,0x000000,0x000000,0x000000,0x000000,0x000000},
@@ -240,13 +243,17 @@ if(type == "color"){
   }
 }else if(color == "off"){
     send_1M_pattern(lights_off,1,100);
-  }else if(color == "colorChange"){
+ }else if(color == "colorChange"){
     send_1M_pattern(color_change,7,delayRate);
+ }else if(color == "white"){
+  color = "white";
+  if(pulse == true){
+    send_1M_pattern(pattern_test_white, 10, delayRate);
+  }else if(pulse == false){
+    send_1M_pattern(solid_white, 1, 100);
   }
-
-  }
-
-
+ }
+}
 // Splits string up and returns values
 String getValue(String data, char separator, int index)
 {
