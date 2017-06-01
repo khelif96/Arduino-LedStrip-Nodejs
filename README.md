@@ -2,7 +2,7 @@
 This Code allows you to control a Radioshack Tri-Color led strip through a web-app using a arduino and a computer like the raspberry pi that acts as a server.
 
 ## To Download
-git clone https://github.com/khelif96/Arduino-LedStrip-Nodejs.git 
+git clone https://github.com/khelif96/Arduino-LedStrip-Nodejs.git
 This will create a folder called Arduino-LedStrip-Nodejs
 
 ## Set up
@@ -13,8 +13,10 @@ Connect the arduino to the computer through the usb port
 ## To Install
 Open the code in the folder called Arduino_code in the arduino ide and upload that to the arduino
 
-In the folder named Arduino-LedStrip-Nodejs open the file named server.js in a text editor and make any modifications to the file such as desired port and the Serial port the arduino is connected to. 
+In the folder named Arduino-LedStrip-Nodejs open the file named server.js in a text editor and make any modifications to the file such as desired port to run the sever on and the Serial port the arduino is connected to.
+
+Run npm install
 
 ## To Run
-Run nodejs server.js in the command line to start the server
+Run nodejs server.js or npm start in the command line to start the server
 In your browser navigate to your devices ipaddress:port and you should see the controls for the led strip
