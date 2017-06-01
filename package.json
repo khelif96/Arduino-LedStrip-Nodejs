@@ -1,0 +1,28 @@
+{
+  "name": "arduino-ledstrip-nodejs",
+  "version": "1.0.0",
+  "description": "Webapp to control an ledstrip connected to an Arduino",
+  "main": "server.js",
+  "dependencies": {
+    "nodejs": "^0.0.0",
+    "bootstrap-slider": "^6.0.5",
+    "serialport": "^2.0.6",
+    "socket.io": "^1.4.4",
+    "express": "^4.13.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khelif96/Arduino-LedStrip-Nodejs.git"
+  },
+  "author": "Mohamed Khelif",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khelif96/Arduino-LedStrip-Nodejs/issues"
+  },
+  "homepage": "https://github.com/khelif96/Arduino-LedStrip-Nodejs#readme"
+}

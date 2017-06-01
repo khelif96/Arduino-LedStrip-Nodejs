@@ -16,36 +16,42 @@ var speed = 100;
 var color = "";
 var mode = "solid";
 var temp;
-var initialPacket
-server.listen(port);
+var initialPacket;
+// server.listen(port);
 app.use(express.static('public'));
+try{
+  server.listen(port);
 
-console.log("Server Started on port " + port)
+  console.log("Server Started on port " + port);
 
-serialPort.on("open", function(){
-  console.log('Serial Port Open');
-});
+  serialPort.on("open", function(){
+    console.log('Serial Port Open');
+  });
 
-io.sockets.on('connection', function(socket){
-  console.log("Client Connected");
+  io.sockets.on('connection', function(socket){
+    console.log("Client Connected");
 
-  // socket.emit('initialPacket',{value:initialPacket});
+    // socket.emit('initialPacket',{value:initialPacket});
 
-  socket.on('input', function(data){
-      console.log("input: " + data.value);
-      //
-      // temp = data.value.split(":");
-      //
-      // if(temp[0] == "color"){
-      //   color = temp[1];
-      // }else if(temp[0] == "speed"){
-      //   speed = temp[1];
-      // }else if(temp[0] == "mode"){
-      //   mode = temp[1];
-      // }
+    socket.on('input', function(data){
+        console.log("input: " + data.value);
+        //
+        // temp = data.value.split(":");
+        //
+        // if(temp[0] == "color"){
+        //   color = temp[1];
+        // }else if(temp[0] == "speed"){
+        //   speed = temp[1];
+        // }else if(temp[0] == "mode"){
+        //   mode = temp[1];
+        // }
 
-      serialPort.write(data.value);
+        serialPort.write(data.value);
 
 
-    })
-});
+      })
+  });
+
+} catch(error){
+  console.log(error);
+}

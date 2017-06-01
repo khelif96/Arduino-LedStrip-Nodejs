@@ -1,5 +1,5 @@
 /*! =======================================================
-                      VERSION  6.0.4              
+                      VERSION  6.1.6              
 ========================================================= */
 "use strict";
 
@@ -775,6 +775,7 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 				this._layout();
 				var newValue = this.options.range ? this._state.value : this._state.value[0];
 
+				this._setDataVal(newValue);
 				if (triggerSlideEvent === true) {
 					this._trigger('slide', newValue);
 				}
@@ -784,7 +785,6 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 						newValue: newValue
 					});
 				}
-				this._setDataVal(newValue);
 
 				return this;
 			},
@@ -882,6 +882,7 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 			},
 
 			relayout: function relayout() {
+				this._resize();
 				this._layout();
 				return this;
 			},
@@ -1116,14 +1117,28 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 					var offset_min = this.tooltip_min.getBoundingClientRect();
 					var offset_max = this.tooltip_max.getBoundingClientRect();
 
-					if (offset_min.right > offset_max.left) {
-						this._removeClass(this.tooltip_max, 'top');
-						this._addClass(this.tooltip_max, 'bottom');
-						this.tooltip_max.style.top = 18 + 'px';
+					if (this.options.tooltip_position === 'bottom') {
+						if (offset_min.right > offset_max.left) {
+							this._removeClass(this.tooltip_max, 'bottom');
+							this._addClass(this.tooltip_max, 'top');
+							this.tooltip_max.style.top = '';
+							this.tooltip_max.style.bottom = 22 + 'px';
+						} else {
+							this._removeClass(this.tooltip_max, 'top');
+							this._addClass(this.tooltip_max, 'bottom');
+							this.tooltip_max.style.top = this.tooltip_min.style.top;
+							this.tooltip_max.style.bottom = '';
+						}
 					} else {
-						this._removeClass(this.tooltip_max, 'bottom');
-						this._addClass(this.tooltip_max, 'top');
-						this.tooltip_max.style.top = this.tooltip_min.style.top;
+						if (offset_min.right > offset_max.left) {
+							this._removeClass(this.tooltip_max, 'top');
+							this._addClass(this.tooltip_max, 'bottom');
+							this.tooltip_max.style.top = 18 + 'px';
+						} else {
+							this._removeClass(this.tooltip_max, 'bottom');
+							this._addClass(this.tooltip_max, 'top');
+							this.tooltip_max.style.top = this.tooltip_min.style.top;
+						}
 					}
 				}
 			},
@@ -1446,10 +1461,10 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 				this.$sliderElem.off();
 			},
 			_setText: function _setText(element, text) {
-				if (typeof element.innerText !== "undefined") {
-					element.innerText = text;
-				} else if (typeof element.textContent !== "undefined") {
+				if (typeof element.textContent !== "undefined") {
 					element.textContent = text;
+				} else if (typeof element.innerText !== "undefined") {
+					element.innerText = text;
 				}
 			},
 			_removeClass: function _removeClass(element, classString) {
@@ -1487,6 +1502,9 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 				var offsetTop = obj.offsetTop;
 				while ((obj = obj.offsetParent) && !isNaN(obj.offsetTop)) {
 					offsetTop += obj.offsetTop;
+					if (obj.tagName !== 'BODY') {
+						offsetTop -= obj.scrollTop;
+					}
 				}
 				return offsetTop;
 			},
@@ -1541,6 +1559,11 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 		if ($) {
 			var namespace = $.fn.slider ? 'bootstrapSlider' : 'slider';
 			$.bridget(namespace, Slider);
+
+			// Auto-Register data-provide="slider" Elements
+			$(function () {
+				$("input[data-provide=slider]")[namespace]();
+			});
 		}
 	})($);
 
